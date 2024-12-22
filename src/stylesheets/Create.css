@@ -1,0 +1,165 @@
+.createContainer{
+    /* background-color: white; */
+}
+
+.headContainer{
+    margin: 0px 20px;
+}
+
+.headContainer label{
+    color: rgb(88, 88, 88);
+    margin: 10px;
+    font-size: small;
+}
+
+#title{
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 3px;
+    width: 100%;
+}
+
+#addImg{
+    display: none;
+}
+
+.card{
+    margin: 20px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.cardContainer{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    text-align: center;
+    /* width: 100%; */
+}
+
+.cardContainer label{
+    margin-top: 3px;
+    color:gray;
+    font-size: 80%;
+    font-weight: bold;
+}
+
+.idx{
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+
+.termContainer{
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: left;
+    flex: 1;
+    margin: 10px;
+}
+
+.definitionContainer{
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: left;
+    flex: 1;
+    margin: 10px;
+}
+
+.card input {
+    width: 100%;
+    overflow: hidden;
+    border: none;
+    background-color: inherit;
+    border-bottom: 2px solid black;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 5px 0px;
+    outline: none;
+  }
+
+.card input:focus{
+    border-bottom: 2px solid darkorange;
+    transition: border-bottom 0.2s;
+}
+
+#trash{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    border: none;
+    background-color: unset;
+}
+
+.good{
+    cursor: pointer;
+}
+
+.bad{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#trash:hover{
+    background-color: lightgray;
+}
+
+.addContainer{
+    display: flex;
+    margin: 20px;
+    /* padding: 30px; */
+    background-color: white;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#addButton{
+    border: none;
+    background-color: transparent;
+    padding: 20px;
+    width: 100%;
+    cursor: pointer;
+}
+
+#addButton span{
+    /* font-weight: bold; */
+    font-size: 1.1em;
+    padding-bottom: 2px;
+    border-bottom: 2px solid #4670ad;
+}
+
+#addButton:hover span{
+    color: darkorange;
+    border-bottom: 2px solid darkorange;
+    transition: all 0.2s;
+}
+
+#createSetButton{
+    margin: 5px 20px 20px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #4255ff;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#createSetButton:hover{
+    background-color: #3443cb;
+
+}
+
+.createSetContainer{
+    display: flex;
+    justify-content: end;
+}

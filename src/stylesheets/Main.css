@@ -1,0 +1,21 @@
+#main{
+    margin: 50px;
+    /* color: white; */
+    /* font-weight: bold; */
+}
+
+.set{
+    background-color: #38598b;
+    border-radius: 20px;
+    height: 150px;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.setBullet{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
