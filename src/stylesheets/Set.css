@@ -1,13 +1,20 @@
+.flashcard-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    flex-direction: column;
+}
+
 .flashcard{
     display: flex;
     background-color: white;
-    padding: 200px;
-    justify-content: center;
-    align-items: center;
+    width: 40vw;
+    height: 50vh;
     cursor: pointer;
-    perspective: 1000px;
     transform-style: preserve-3d;
-    transition: transform 0.5s ease; 
+    transition: transform 0.2s ease; 
+    font-size: larger;
 }
 
 .card-front, .card-back{
@@ -21,9 +28,26 @@
 }
 
 .card-back {
-    transform: rotateY(180deg);
+    transform: rotateX(180deg);
 }
 
 .flashcard.flipped {
-    transform: rotateY(180deg);
+    transform: rotateX(180deg);
+}
+
+.no-set{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.arrowsContainer{
+    margin: 10px 0px;
+}
+
+.arrowsContainer button{
+    /* padding: 10px; */
+    align-items: center;
+    justify-content: center;
 }

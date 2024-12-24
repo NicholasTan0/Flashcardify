@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import "../stylesheets/Create.css";
+import { useNavigate } from "react-router-dom";
 
-export default function Create({setPageView, addSet}){
+export default function Create(){
+    let navigate = useNavigate();
 
     const [cards, setCards] = useState([{index: 0, term: "", definition: "", img: null}]);
     const [title, setTitle] = useState("");
@@ -31,16 +33,18 @@ export default function Create({setPageView, addSet}){
     };
 
     return(
-        <>
         <div className="createContainer">
             <div className="headContainer">
                 <h2>Create a new flashcard set</h2>
                 <label htmlFor="title">Title</label>
-                <div style={{display: "flex"}}><input 
-                id="title"
-                placeholder="Enter a title"
-                value={title}
-                onChange={handleTitle}></input></div>
+                <div style={{display: "flex"}}>
+                    <input 
+                        id="title"
+                        placeholder="Enter a title"
+                        value={title}
+                        onChange={handleTitle}>
+                    </input>
+                </div>
             </div>
             <ul>
                 {cards.map((card, index) => {
@@ -79,21 +83,17 @@ export default function Create({setPageView, addSet}){
                 <div className="addContainer"><button id="addButton" onClick={addCard}><span>+ Add Card</span></button></div>
             </ul>
             <div className="createSetContainer"><button onClick={()=>{
-                    let completeSet = {
+                    let newSet = {
+                        id: Date.now(),
                         title: title.length ? title : "Untitled Set",
                         flashcards: cards,
                     };
-                    addSet(completeSet);
-                    setPageView("main");
+                    let currentSets = JSON.parse(localStorage.getItem('SETS')) || [];
+                    currentSets.push(newSet);
+                    localStorage.setItem('SETS', JSON.stringify(currentSets));
+                    navigate('/');
                 }} 
                 id="createSetButton">Create</button></div>
-            <button onClick={()=> {
-                // console.log(JSON.parse(localStorage.getItem("SETS")))
-                localStorage.clear();
-                window.location.reload();
-            }}>CLEAR STORAGE</button>
         </div>
-
-        </>
     )
 }

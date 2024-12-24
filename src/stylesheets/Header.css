@@ -1,13 +1,14 @@
-.headerContainer{
+nav {
     display: flex;
     align-items: center;
     justify-content:space-between;
     text-align: center;
     background-color: #113f67;
-    margin: -8px;
+    /* margin: -8px; */
     margin-bottom: 8px;
-    padding: 40px 10px;
-    /* border-bottom: solid 1px #e7eaf6; */
+    padding: 35px 10px;
+    position: sticky;
+    top: 0;
 }
 
 #logo{
@@ -20,6 +21,7 @@
     font-size: 1.8em;
     color: #e7eaf6;
     cursor: pointer;
+    text-decoration: none;
 }
 
 #logo img{

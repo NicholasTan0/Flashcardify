@@ -1,14 +1,15 @@
 .createContainer{
+    margin: 40px;
     /* background-color: white; */
 }
 
 .headContainer{
-    margin: 0px 20px;
+    /* margin: 0px 20px; */
 }
 
 .headContainer label{
     color: rgb(88, 88, 88);
-    margin: 10px;
+    margin-left: 10px;
     font-size: small;
 }
 
