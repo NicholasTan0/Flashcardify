@@ -12,9 +12,7 @@
 }
 
 #main{
-    margin: 50px;
-    /* color: white; */
-    /* font-weight: bold; */
+    margin: 40px;
 }
 
 #main ul{
@@ -23,17 +21,11 @@
     gap: 30px;
 }
 
-#main ul li{
-    /* flex: 1; */
-}
-
 .set{
     background-color: #38598b;
     border-radius: 20px;
     height: 200px;
-    /* width: 400px; */
     padding: 20px;
-    /* margin: 20px; */
     color: white;
     cursor: pointer;
 }

@@ -35,10 +35,10 @@ export default function Set(){
             <div className="flashcard-container">
                 <div onClick={()=>{setIsFlipped(!isFlipped)}} className={`flashcard ${isFlipped ? 'flipped' : ''} `}>
                     <div className="card-front">
-                        <p>{set.flashcards[index].term}</p>
+                        <div id="termText">{set.flashcards[index].term}</div>
                     </div>
                     <div className="card-back">
-                        <p>{set.flashcards[index].definition}</p>
+                        <div id="definitionText" style={{display: set.flashcards[index].definition ? "block" : "none"}}>{set.flashcards[index].definition}</div>
                         {set.flashcards[index].img && (
                             <img
                             src={set.flashcards[index].img}

@@ -69,21 +69,42 @@
     margin: 10px;
 }
 
+.definitionContainer img{
+    width: 5vw;
+    justify-self: center;
+    margin: 4px;
+}
+
+.inputContainer{
+    display: flex;
+    justify-content: center;
+    align-items:end;
+    border-bottom: 2px solid black;
+}
+
 .card input {
     width: 100%;
-    overflow: hidden;
     border: none;
     background-color: inherit;
-    border-bottom: 2px solid black;
     font-family: inherit;
     font-size: inherit;
     padding: 5px 0px;
     outline: none;
-  }
+}
 
-.card input:focus{
+.inputContainer svg{
+    margin-left: 4px;
+    height: 1.3em;
+    cursor: pointer;
+}
+
+.inputContainer:focus-within{
     border-bottom: 2px solid darkorange;
     transition: border-bottom 0.2s;
+}
+
+.inputContainer input[type="file"]{
+    display: none;
 }
 
 #trash{
@@ -132,8 +153,10 @@
 #addButton span{
     /* font-weight: bold; */
     font-size: 1.1em;
+    color:rgb(88, 88, 88);
     padding-bottom: 2px;
     border-bottom: 2px solid #4670ad;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 #addButton:hover span{
