@@ -4,12 +4,11 @@
 }
 
 .headContainer{
-    /* margin: 0px 20px; */
+    width: 60vw;
 }
 
 .headContainer label{
     color: rgb(88, 88, 88);
-    margin-left: 10px;
     font-size: small;
 }
 
@@ -19,6 +18,7 @@
     padding: 10px;
     margin-top: 3px;
     width: 100%;
+    font-family: inherit;
 }
 
 #addImg{
@@ -27,59 +27,63 @@
 
 .card{
     margin: 20px;
-    padding: 30px;
+    padding: 50px 30px;
     background-color: white;
     border-radius: 10px;
+    width: 80vw;
+    justify-self: center;
 }
 
 .cardContainer{
     display: flex;
-    align-items: center;
-    justify-content:space-between;
-    text-align: center;
-    /* width: 100%; */
+    align-items:start;
 }
 
-.cardContainer label{
-    margin-top: 3px;
+.cardContainer span{
     color:gray;
     font-size: 80%;
     font-weight: bold;
+    user-select: none;
 }
 
 .idx{
-    margin-right: 15px;
+    margin-right: 20px;
     font-weight: bold;
+    align-self: center;
 }
 
 
 .termContainer{
-    display: grid;
-    grid-template-columns: 1fr;
     text-align: left;
     flex: 1;
-    margin: 10px;
+    margin-right: 10px;
+    width: 20vw;
 }
 
 .definitionContainer{
-    display: grid;
-    grid-template-columns: 1fr;
     text-align: left;
     flex: 1;
-    margin: 10px;
+    margin-left: 10px;
+    width: 20vw;
 }
 
 .definitionContainer img{
     width: 5vw;
     justify-self: center;
     margin: 4px;
+    cursor:zoom-in;
+}
+
+.definitionContainer img:hover{
+    outline: 2px dotted black;
 }
 
 .inputContainer{
     display: flex;
-    justify-content: center;
+    /* justify-content: space-between; */
     align-items:end;
     border-bottom: 2px solid black;
+    width: 100%;
 }
 
 .card input {
@@ -90,6 +94,17 @@
     font-size: inherit;
     padding: 5px 0px;
     outline: none;
+}
+
+.card textarea{
+    border: none;
+    outline: none;
+    resize: none;
+    padding: 4px 0;
+    font-family: inherit;
+    font-size: inherit;
+    field-sizing: content;
+    width: 100%;
 }
 
 .inputContainer svg{
@@ -111,18 +126,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    align-self: center;
     border-radius: 50%;
     height: 30px;
     width: 30px;
     border: none;
     background-color: unset;
+    margin-left: 10px;
 }
 
-.good{
+.allowed{
     cursor: pointer;
 }
 
-.bad{
+.not-allowed{
     opacity: 0.5;
     cursor: not-allowed;
 }
@@ -132,14 +149,7 @@
 }
 
 .addContainer{
-    display: flex;
-    margin: 20px;
-    /* padding: 30px; */
-    background-color: white;
-    border-radius: 10px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    padding: 0px 30px;
 }
 
 #addButton{
@@ -151,7 +161,6 @@
 }
 
 #addButton span{
-    /* font-weight: bold; */
     font-size: 1.1em;
     color:rgb(88, 88, 88);
     padding-bottom: 2px;
@@ -165,10 +174,9 @@
     transition: all 0.2s;
 }
 
-#createSetButton{
-    margin: 5px 20px 20px;
-    margin-bottom: 20px;
-    padding: 10px 20px;
+#createSetButton, #backButton{
+    margin: 0px 20px 10px 0px;
+    padding: 10px 15px;
     background-color: #4255ff;
     color: white;
     font-weight: bold;
@@ -178,12 +186,65 @@
     cursor: pointer;
 }
 
-#createSetButton:hover{
+#createSetButton:hover, #backButton:hover{
     background-color: #3443cb;
-
 }
 
 .createSetContainer{
     display: flex;
     justify-content: end;
+}
+
+.imgContainer{
+    display: inline-flex;
+    align-items: end;
+
+}
+
+.modal{
+    border: 2px solid black;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#viewImage{
+    min-height: 20vh;
+    min-width: 20vw;
+    max-height: 50vh;
+    max-width: 50vw;
+}
+
+.deleteButton{
+    background-color: red;
+    color: white;
+    display: flex;
+    margin-bottom: -8px;
+    cursor: pointer;
+}
+
+#diagramLabel{
+    display: inline-block;
+    border-radius: 20px;
+    background-color: white;
+    margin-top: 20px;
+    padding: 10px;
+    color: rgb(88, 88, 88);
+    cursor: pointer;
+}
+
+#diagramLabel:hover{
+    outline: 1px solid #ccc;
+}
+
+#diagram{
+    display: none;
+}
+
+.err{
+    color: #FF725B;
+    font-size: small;
+}
+
+.modalText p{
+    font:smaller;
+    font-weight: bold;
 }

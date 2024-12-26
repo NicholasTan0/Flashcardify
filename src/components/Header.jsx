@@ -11,8 +11,11 @@ export default function Header({setPageView}){
                 <img src={logo}></img>
                 <div>Flashcardify</div>
             </Link>
-            <input id="searchbar" type="search" placeholder="Search..."></input>
-            <button onClick={()=>navigate('/create-set')} title="Create a new set" id="createButton">+</button>
+            <input id="searchbar" type="search" placeholder="Search for titles, tags, or users..."></input>
+            <button onClick={()=>navigate('/create-set')} title="Create a new set" id="createButton">
+                <span>+</span>
+                Create
+            </button>
         </nav>
     )
 }

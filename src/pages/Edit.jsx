@@ -1,19 +1,23 @@
-import { useEffect, useRef, useState } from "react";
-import "../stylesheets/Create.css";
-import { useNavigate } from "react-router-dom";
+import { useRef, useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function Create({ sets, setSets }){
+export default function Edit({ sets, setSets }){
     let navigate = useNavigate();
 
     const modal = useRef();
 
-    const [cards, setCards] = useState([{index: 0, term: "", definition: "", img: null}]);
-    const [title, setTitle] = useState("");
+    const { id } = useParams();
+    const numberId = Number(id);
+    const set = !Number.isNaN(numberId) && sets.find((s) => s.id === numberId);
+
+    const [cards, setCards] = useState(set.flashcards);
+    const [title, setTitle] = useState(set.title);
     const [selectedImg, setSelectedImg] = useState(null);
     const [err, setErr] = useState(false);
 
     // useEffect(()=>{
-    //     console.log(cards);
+    //     console.log("THIS ONE: ", cards);
     // },[cards]);
 
     function hasEmpty(card){
@@ -63,28 +67,29 @@ export default function Create({ sets, setSets }){
         setCards(cards.map(card => card.index === index ? {...card, img: null} : card));
     }
 
-    const handleCreate = () => {
+    const handleSave = () => {
         let unfinished = cards.some(hasEmpty);
         setErr(unfinished);
 
         if(unfinished){
             alert("There are one or more missing terms/definitions. Please fill them in and try again.");
         } else{
-            let newSet = {
-                id: Date.now(),
-                title: title.length ? title : "Untitled Set",
-                flashcards: cards,
-            };
-            setSets([...sets, newSet]);
+            let updatedSets = sets.map(curSet => curSet.id === numberId ? {...curSet, title: title.length ? title : "Untitled Set", flashcards: cards} : curSet);
+            setSets(updatedSets);
             navigate('/');
         }
     }
 
-
-    return(
+    return set ? (
         <div className="createContainer">
             <div className="headContainer">
-                <h2>Create a new flashcard set</h2>
+                <button 
+                    id="backButton"
+                    onClick={()=>{navigate(`/${id}`)}}
+                >
+                    ← Back
+                </button>
+                <br></br>
                 <label id="titleLabel" htmlFor="title">Title</label>
                 <input 
                     id="title"
@@ -168,8 +173,13 @@ export default function Create({ sets, setSets }){
                     </div>
                 </dialog>
             </ul>
-            <div className="createSetContainer"><button onClick={handleCreate} 
-                id="createSetButton">Create</button></div>
+            <div className="createSetContainer"><button onClick={handleSave} 
+                id="createSetButton">Save</button></div>
         </div>
-    )
+    ) : (
+        <div className="no-set">
+            <h2>This set was either deleted or does not exist. Sorry!</h2>
+            <Link to="/">Home</Link>
+        </div>
+    );
 }

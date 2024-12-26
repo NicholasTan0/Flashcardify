@@ -17,6 +17,8 @@
     transform-style: preserve-3d;
     transition: transform 0.2s ease; 
     font-size: larger;
+    margin: 20px 0;
+    box-shadow: rgba(40, 46, 62, 0.1) 0px 0px 32px 0px;
 }
 
 .card-front, .card-back{
@@ -47,7 +49,6 @@
     overflow-y: auto;
     overflow-wrap: break-word;
     font-size: 1.5em;
-    /* height: 100%; */
     margin: 10px;
 }
 
@@ -57,8 +58,6 @@
     overflow-x: hidden;
     overflow-wrap: break-word;
     font-size: 1.5em;
-    /* width: 100%; */
-    /* height: 90%; */
     margin: 10px;
 }
 
@@ -70,11 +69,29 @@
 }
 
 .arrowsContainer{
-    margin: 10px 0px;
+    
 }
 
 .arrowsContainer button{
-    /* padding: 10px; */
     align-items: center;
     justify-content: center;
+}
+
+.title-container{
+    display: inline-flex;
+    gap: 2px;
+}
+
+.title-container button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: rgb(40, 46, 62);
+    border: 3px solid rgb(217, 221, 232);
+    border-radius: 20px;
+    font-size: 1em;
+    padding: 5px 13px;
+    cursor: pointer;
+    gap: 8px;
 }
