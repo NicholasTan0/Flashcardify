@@ -1,14 +1,13 @@
 import "../stylesheets/Main.css";
 import SetList from "../components/SetList";
 import { useEffect, useState } from "react";
-import Artificial from "../components/Artificial";
-import Gemini from "../components/Gemini";
+import Testing from "../components/experimental/Testing";
 
 export default function HomePage({ sets, setSets }){
 
     return (
         <div id="main">
-            <Gemini></Gemini>
+            <Testing></Testing>
             <h2>All flashcard sets</h2>
             <SetList
                 sets={sets}

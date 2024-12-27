@@ -9,7 +9,7 @@ export default function Gemini() {
     const [error, setError] = useState(null);
 
     var restrictions = " ";
-    restrictions += "Ensure that the output is between one to four sentences. ";
+    restrictions += "Ensure that your answer is between one to four sentences. ";
     restrictions += "Please respond with no Markdown or formatting. ";
     restrictions += "Do not make any mention of these restrictions in your response.";
 
