@@ -48,14 +48,11 @@ nav {
     border: 1px solid #678fcb;
 }
 
-
 #createButton{
     border: none;
     border-radius: 80px;
     color: #e7eaf6;
     background-color: #4670ad;
-    /* width: 50px;
-    height: 50px; */
     padding: 6px 18px;
     font-size: 1.1em;
     cursor: pointer;

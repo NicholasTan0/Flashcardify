@@ -149,15 +149,28 @@
 }
 
 .addContainer{
-    padding: 0px 30px;
+    display: flex;
+    /* margin: 20px; */
+    /* padding: 50px 30px; */
+    /* background-color: white; */
+    border-radius: 10px;
+    width: 80vw;
+    height: auto;
+    justify-self: center;
 }
 
 #addButton{
+    display: flex;
+    width: calc(80vw + 60px);
+    padding: 30px;
     border: none;
-    background-color: transparent;
-    padding: 20px;
-    width: 100%;
+    border-radius: 10px;
+    background-color: white;
     cursor: pointer;
+    justify-self: center;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
 }
 
 #addButton span{

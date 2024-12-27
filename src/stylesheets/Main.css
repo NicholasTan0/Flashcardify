@@ -35,3 +35,21 @@
     padding: 0;
     margin: 0;
 }
+
+#ask-ai{
+    font: inherit;
+    padding: 10px;
+    width: 20vw;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+#ai-text{
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 10px;
+    width: 20vw;
+    field-sizing: content;
+    resize: none;
+    font: inherit;
+}
