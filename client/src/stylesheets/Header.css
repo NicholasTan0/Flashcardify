@@ -32,7 +32,7 @@ header {
     border-radius: 20px;
     border: none;
     padding: 15px;
-    background-color: var(--bg-light);
+    background-color: #e7eaf6;
     color: var(--text);
     width: 40vw;
     /* border: 1px solid #38598b; */
@@ -51,7 +51,7 @@ header {
     border: none;
     border-radius: 80px;
     color: var(--text);
-    background-color: var(--bg-light);
+    background-color: #e7eaf6;
     padding: 6px 18px;
     font-size: 1em;
     cursor: pointer;

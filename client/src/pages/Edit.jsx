@@ -177,76 +177,6 @@ export default function Edit(){
         );
     };
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-
-    //     let unfinished = cards.some(hasEmpty);
-    //     setErr(unfinished);
-
-    //     if(unfinished) return;
-
-    //     try {
-    //         const newCards = cards.map(({termImgURL, definitionImgURL, index, ...rest}) => rest);
-    //         const originalCards = originalSet.cards;
-
-    //         if(diagram !== originalSet.diagram) console.log("diff diagra");
-    //         if(title !== originalSet.title) console.log("diff title ")
-
-    //         // check for any changes within all cards
-    //         if(JSON.stringify(newCards) !== JSON.stringify(originalCards)){
-    //             const originalCardsMap = new Map(originalCards.map(card => [card._id, card]));
-    //             const ids = new Set();
-    //             const newIds = [];
-                
-    //             for(const card of newCards){
-    //                 if(card._id){
-    //                     ids.add(card._id);
-    //                     //check for edits within each individual card
-    //                     if(JSON.stringify(card) !== JSON.stringify(originalCardsMap.get(card._id))){
-    //                         //IF EDITED, UPDATE THE CORRESPONDING CARD.
-    //                         const formData = new FormData();
-                            
-    //                         if(card.term !== originalCardsMap.get(card._id).term)
-    //                             formData.append("term", card.term);
-    //                         if(card.definition !== originalCardsMap.get(card._id).definition)
-    //                             formData.append("definition", card.definition);
-    //                         if(card.termImg !== originalCardsMap.get(card._id).termImg)
-    //                             formData.append("termImg", card.termImg);
-    //                         if(card.definitionImg !== originalCardsMap.get(card._id).definitionImg)
-    //                             formData.append("definitionImg", card.definitionImg);
-                            
-    //                         await axios.patch(`${backendURL}/api/card/update/${card._id}`, formData);
-    //                     }
-    //                 }
-    //                 else{
-    //                     //IF NO ID IS PRESENT, CREATE IT.
-    //                     const formData = new FormData();
-    //                     formData.append("term", card.term);
-    //                     formData.append("definition", card.definition);
-    //                     const response = await axios.post(`${backendURL}/api/card/add`, formData);
-    //                     newIds.push(response.data.card._id);
-    //                 }
-    //             }
-    //             //deletions
-    //             const deletedIds = originalCards
-    //                 .filter(card => !ids.has(card._id))
-    //                 .map(card => card._id);
-
-    //             if(deletedIds.length > 0) 
-    //                 await axios.patch(`${backendURL}/api/set/pull/${originalSet._id}`, { cardIds: deletedIds });
-
-    //             if(newIds.length > 0)
-    //                 await axios.patch(`${backendURL}/api/set/push/${originalSet._id}`, { cardIds: newIds });
-
-    //             if(diagram !== originalSet.diagram) console.log("diff diagra");
-    //         }
-    //     } catch (error) {
-    //         console.log(error);
-    //     } finally {
-    //         navigate('/');
-    //     }
-    // }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -264,11 +194,11 @@ export default function Edit(){
             if(JSON.stringify(newCards) !== JSON.stringify(originalCards)){
                 const originalCardsMap = new Map(originalCards.map(card => [card._id, card]));
                 const ids = new Set();
-                const newIds = [];
                 
                 for(const card of newCards){
                     if(card._id){
                         ids.add(card._id);
+                        finalCards.push(card);
                         //check for edits within each individual card
                         if(JSON.stringify(card) !== JSON.stringify(originalCardsMap.get(card._id))){
                             //IF EDITED, UPDATE THE CORRESPONDING CARD.
@@ -284,7 +214,6 @@ export default function Edit(){
                                 formData.append("definitionImg", card.definitionImg);
                             
                             const updatedCard = await axios.patch(`${backendURL}/api/card/update/${card._id}`, formData);
-                            finalCards.push(card._id);
                         }
                     }
                     else{
@@ -293,12 +222,11 @@ export default function Edit(){
                         formData.append("term", card.term);
                         formData.append("definition", card.definition);
                         const createdCard = await axios.post(`${backendURL}/api/card/add`, formData);
-                        finalCards.push(createdCard.data.card._id);
+                        finalCards.push(createdCard.data.card);
                     }
                 }
                 //deletions
                 const deletedCards = originalCards.filter(card => !ids.has(card._id));
-                
                 await Promise.all(
                     deletedCards.map(card =>
                         axios.delete(`${backendURL}/api/card/remove/${card._id}`)
@@ -307,9 +235,15 @@ export default function Edit(){
             }
             const finalFormData = new FormData();
             
-            if(title !== originalSet.title) finalFormData.append("title", title);
-            if(diagram !== originalSet.diagram) finalFormData.append("diagram", diagram);
-            if(finalCards.length > 0) finalFormData.append("cards", finalCards);
+            if(title !== originalSet.title){
+                finalFormData.append("title", title);
+            }
+            if(diagram !== originalSet.diagram){
+                finalFormData.append("diagram", diagram);
+            }
+            if(finalCards.length > 0) {
+                finalFormData.append("cards", JSON.stringify(finalCards.map(card => card._id)));
+            }
 
             await axios.patch(`${backendURL}/api/set/update/${originalSet._id}`, finalFormData);
         } catch (error) {

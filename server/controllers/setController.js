@@ -113,7 +113,7 @@ const updateSet = async (req, res) => {
             toUpdate.diagram = diagramURL;
         }
 
-        if(cards) toUpdate.cards = cards;
+        if(cards) toUpdate.cards = JSON.parse(cards);
 
         if(Object.keys(toUpdate).length > 0){
             const updatedSet = await setModel.findByIdAndUpdate(req.params.id,

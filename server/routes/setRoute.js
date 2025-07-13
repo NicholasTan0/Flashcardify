@@ -5,7 +5,7 @@ import upload from '../middleware/multer.js';
 const setRouter = express.Router();
 
 setRouter.post('/add', upload.single('diagram'), addSet);
-setRouter.delete('/remove', removeSet);
+setRouter.delete('/remove/:id', removeSet);
 setRouter.get('/list', listSets);
 setRouter.post('/single', singleSet);
 setRouter.patch('/push/:id', pushSet);

@@ -31,7 +31,7 @@ export default function Set(){
     const handleDelete = async () => {
         if(window.confirm("Are you sure you want to delete this set?")){
             try {
-                await axios.post(`${backendURL}/api/set/remove`, { id });
+                await axios.delete(`${backendURL}/api/set/remove/${currentSet._id}`);
             } catch (error) {
                 console.log(error);
             } finally {

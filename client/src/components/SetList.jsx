@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 export default function SetList({ allSets }){
     let navigate = useNavigate();
 
+    if(allSets.length === 0){
+        return <div>Nothing to see here.</div>
+    }
+
     return (
         <ul>
             {allSets.map((item, index) => (
