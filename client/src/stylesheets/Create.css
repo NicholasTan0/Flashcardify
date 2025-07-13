@@ -1,14 +1,9 @@
-.createContainer{
-    margin: 40px;
-    /* background-color: white; */
-}
-
 .headContainer{
     width: 60vw;
 }
 
 .headContainer label{
-    color: rgb(88, 88, 88);
+    color: var(--text-muted);
     font-size: small;
 }
 
@@ -17,26 +12,27 @@
     border-radius: 20px;
     padding: 10px;
     margin-top: 3px;
-    width: 100%;
+    width: 400px;
     font-family: inherit;
+    background-color: var(--bg-light);
 }
 
 #addImg{
-    display: none;
+    display: none;   
 }
 
 .card{
     margin: 20px;
     padding: 50px 30px;
-    background-color: white;
     border-radius: 10px;
     width: 80vw;
     justify-self: center;
+    background-color: var(--bg-light);
 }
 
 .cardContainer{
     display: flex;
-    align-items:start;
+    align-items: start;
 }
 
 .cardContainer span{
@@ -67,14 +63,18 @@
     width: 20vw;
 }
 
-.definitionContainer img{
-    width: 5vw;
-    justify-self: center;
+.imgPreview div{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 60px;
+    width: 84px;
     margin: 4px;
     cursor:zoom-in;
+    /* box-sizing: border-box; */
 }
 
-.definitionContainer img:hover{
+.imgPreview div:hover{
     outline: 2px dotted black;
 }
 
@@ -89,11 +89,11 @@
 .card input {
     width: 100%;
     border: none;
-    background-color: inherit;
     font-family: inherit;
     font-size: inherit;
     padding: 5px 0px;
     outline: none;
+    /* background-color: blue; */
 }
 
 .card textarea{
@@ -105,6 +105,7 @@
     font-size: inherit;
     field-sizing: content;
     width: 100%;
+    background-color: inherit;
 }
 
 .inputContainer svg{
@@ -152,7 +153,6 @@
     display: flex;
     /* margin: 20px; */
     /* padding: 50px 30px; */
-    /* background-color: white; */
     border-radius: 10px;
     width: 80vw;
     height: auto;
@@ -165,17 +165,17 @@
     padding: 30px;
     border: none;
     border-radius: 10px;
-    background-color: white;
     cursor: pointer;
     justify-self: center;
     align-self: center;
     justify-content: center;
     align-items: center;
+    color: var(--text);
+    background-color: var(--bg-light);
 }
 
 #addButton span{
     font-size: 1.1em;
-    color:rgb(88, 88, 88);
     padding-bottom: 2px;
     border-bottom: 2px solid #4670ad;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -222,8 +222,8 @@
 #viewImage{
     min-height: 20vh;
     min-width: 20vw;
-    max-height: 50vh;
-    max-width: 50vw;
+    max-height: 70vh;
+    max-width: 70vw;
 }
 
 .deleteButton{
@@ -235,17 +235,22 @@
 }
 
 #diagramLabel{
-    display: inline-block;
+    display: flex;
     border-radius: 20px;
-    background-color: white;
+    background-color: var(--bg-light);
     margin-top: 20px;
+    gap: 2px;
+    width: 100px;
     padding: 10px;
-    color: rgb(88, 88, 88);
+    color: var(--text);
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    /* outline: 1px solid #ccc; */
 }
 
 #diagramLabel:hover{
-    outline: 1px solid #ccc;
+    background-color: whitesmoke;
 }
 
 #diagram{
@@ -260,4 +265,10 @@
 .modalText p{
     font:smaller;
     font-weight: bold;
+}
+
+.main ol {
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px; */
 }

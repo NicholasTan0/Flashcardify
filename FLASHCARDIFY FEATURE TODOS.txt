@@ -1,0 +1,10 @@
+FLASHCARDIFY FEATURE TODOS
+- TEXT TO SPEECH
+- DICTIONARY API
+- MULTILINGUAL
+- VOICE MESSAGES
+- VIDEO ATTACHMENTS
+Smart Spaced Repetition: Implement an algorithm that adjusts review intervals based on user performance and confidence ratings. Track error patterns to prioritize challenging cards.
+Rich Media Integration: Allow users to add images, audio recordings, and diagrams to cards. Support mathematical equations and code snippets.
+HINTS
+- recently viewed, popular, owned by me/not owned by me

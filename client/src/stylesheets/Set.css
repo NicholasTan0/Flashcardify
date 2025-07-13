@@ -8,7 +8,7 @@
 
 .flashcard{
     display: flex;
-    background-color: white;
+    background-color: var(--bg-light);
     width: 40vw;
     min-width: 500px;
     height: 45vh;
@@ -86,12 +86,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
-    color: rgb(40, 46, 62);
-    border: 3px solid rgb(217, 221, 232);
+    outline: 0;
+    border: 0;
+    /* background-color: var(--primary); */
+    color: var(--bg);
+    /* border: 3px solid rgb(217, 221, 232); */
     border-radius: 20px;
     font-size: 1em;
     padding: 5px 13px;
     cursor: pointer;
     gap: 8px;
+}
+
+#editButton {
+    background-color: var(--primary);
+}
+
+#deleteButton {
+    background-color: var(--danger);
+}
+
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

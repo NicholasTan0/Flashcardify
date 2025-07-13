@@ -11,14 +11,15 @@
     font-size: 1.2em;
 }
 
-#main{
+.main{
     margin: 40px;
+    min-height: calc(100vh - 160px);
 }
 
-#main ul{
+.main ul{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
+    gap: 20px;
 }
 
 .set{
@@ -28,6 +29,14 @@
     padding: 20px;
     color: white;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.set img{
+    max-height:100%;
+    width: auto;
+    /* border-radius: 10px; */
 }
 
 .setBullet{
