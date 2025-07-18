@@ -1,40 +1,69 @@
 import "./stylesheets/App.css"
+import { createBrowserRouter, Navigate, RouterProvider, useParams } from "react-router-dom";
+import Layout from "./components/Layout";
 import Create from "./pages/Create";
 import HomePage from "./pages/HomePage";
-import Set from "./components/Set"
-import { useState, useEffect } from "react";
-import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
+import Set from "./pages/Set";
 import NotFoundPage from "./pages/NotFoundPage";
-import Layout from "./components/Layout";
 import Edit from "./pages/Edit";
-import axios from "axios";
+import Study from "./pages/Study";
+import Match from "./pages/Match";
 
 export const backendURL = import.meta.env.VITE_BACKEND_URL;
 
 export default function App(){
-  const router = createBrowserRouter([{
-    path: '/',
-    errorElement: <NotFoundPage/>,
-    element: <Layout/>,
-    children: [
-      {
+  function Redirect(){
+    const { id } = useParams();
+    return <Navigate to={`/${id}`}/>
+  }
+
+  const router = createBrowserRouter([
+    {
+      path: '/error',
+      element: <NotFoundPage/>
+    },
+    {
+      path: '/',
+      errorElement: <NotFoundPage/>,
+      element: <Layout/>,
+      children: [
+        {
           index: true,
           element: <HomePage/>,
-      },
-      {
+        },
+        {
           path: '/create',
           element: <Create/>,
-      },
-      {
-          path: '/view/:id',
-          element: <Set/>,
-      },
-      {
-        path: '/edit/:id',
-        element: <Edit/>,
-      },
-    ]}]
-  );
+        },
+        {
+          path: '/:id',
+          // element: <Set/>,
+          children: [
+            {
+              index: true,
+              element: <Set/>
+            },
+            {
+              path: 'edit',
+              element: <Edit/>
+            },
+            {
+              path: 'flashcards',
+              element: <Study/>
+            },
+            {
+              path: 'match',
+              element: <Match/>,
+            },
+            {
+              path: '*',
+              element: <Redirect/>
+            }
+          ]
+        },
+      ]
+    }
+  ]);
   
   return <RouterProvider router={router}/>
 }

@@ -1,5 +1,11 @@
 .headContainer{
-    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.headContainer button {
+    align-self: flex-start;
 }
 
 .headContainer label{
@@ -7,14 +13,32 @@
     font-size: small;
 }
 
+.headContainer h2{
+    margin: 0;
+}
+
+.titleContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+#titleLabel{
+    margin-left:10px;
+}
+
 #title{
     border: none;
     border-radius: 20px;
     padding: 10px;
-    margin-top: 3px;
     width: 400px;
     font-family: inherit;
     background-color: var(--bg-light);
+    color: var(--text);
+}
+
+#title::placeholder{
+    color: var(--text-muted);
 }
 
 #addImg{
@@ -28,6 +52,7 @@
     width: 80vw;
     justify-self: center;
     background-color: var(--bg-light);
+    color: var(--text);
 }
 
 .cardContainer{
@@ -75,14 +100,14 @@
 }
 
 .imgPreview div:hover{
-    outline: 2px dotted black;
+    outline: 1px dotted var(--text);
 }
 
 .inputContainer{
     display: flex;
     /* justify-content: space-between; */
     align-items:end;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid var(--text);
     width: 100%;
 }
 
@@ -93,7 +118,6 @@
     font-size: inherit;
     padding: 5px 0px;
     outline: none;
-    /* background-color: blue; */
 }
 
 .card textarea{
@@ -106,6 +130,7 @@
     field-sizing: content;
     width: 100%;
     background-color: inherit;
+    color: var(--text);
 }
 
 .inputContainer svg{
@@ -146,7 +171,7 @@
 }
 
 #trash:hover{
-    background-color: lightgray;
+    background-color: var(--text-muted);
 }
 
 .addContainer{
@@ -174,21 +199,24 @@
     background-color: var(--bg-light);
 }
 
-#addButton span{
+#addButton div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
     font-size: 1.1em;
     padding-bottom: 2px;
     border-bottom: 2px solid #4670ad;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-#addButton:hover span{
+#addButton:hover div{
     color: darkorange;
     border-bottom: 2px solid darkorange;
     transition: all 0.2s;
 }
 
-#createSetButton, #backButton{
-    margin: 0px 20px 10px 0px;
+.formButton{
     padding: 10px 15px;
     background-color: #4255ff;
     color: white;
@@ -199,7 +227,7 @@
     cursor: pointer;
 }
 
-#createSetButton:hover, #backButton:hover{
+.formButton:hover{
     background-color: #3443cb;
 }
 
@@ -238,19 +266,18 @@
     display: flex;
     border-radius: 20px;
     background-color: var(--bg-light);
-    margin-top: 20px;
     gap: 2px;
-    width: 100px;
+    align-self: flex-start;
     padding: 10px;
     color: var(--text);
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    /* outline: 1px solid #ccc; */
+    outline: 3px dotted gainsboro;
 }
 
 #diagramLabel:hover{
-    background-color: whitesmoke;
+    background-color: var(--bg-dark);
 }
 
 #diagram{
@@ -265,10 +292,4 @@
 .modalText p{
     font:smaller;
     font-weight: bold;
-}
-
-.main ol {
-    /* display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 20px; */
 }

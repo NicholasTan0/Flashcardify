@@ -10,7 +10,7 @@ export default function SetList({ allSets }){
     return (
         <ul>
             {allSets.map((item, index) => (
-                <li key={index} onClick={() => navigate(`/view/${item._id}`)} className="set">
+                <li key={index} onClick={() => navigate(`/${item._id}`)} className="set">
                     <div>
                         <h2>{item.title}</h2>
                         <div>{item.cards.length} {item.cards.length === 1 ? "term" : "terms"}</div>

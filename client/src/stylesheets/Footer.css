@@ -1,8 +1,8 @@
 footer{
-    background-color: black;
-    color: #e7eaf6;
-
-    height: 50px;
+    background-color: hsl(0, 0%, 10%);
+    color: hsl(0, 0%, 90%);
+    border-top: 1px solid hsl(0, 0%, 40%);
+    height: 75px;
     display: flex;
     justify-content: center;
     align-items: center;

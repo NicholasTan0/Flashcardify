@@ -6,8 +6,9 @@ header {
     height: 80px;
     position: sticky;
     top: 0;
-    z-index: 9999;
+    z-index: 10;
     padding: 0 20px;
+    border-bottom: 1px solid hsl(0, 0%, 40%);
 }
 
 #logo{
@@ -25,48 +26,51 @@ header {
 
 #logo img{
     height: 50px;
-    /* margin: 0px 8px; */
 }
 
 #searchbar{
     border-radius: 20px;
     border: none;
     padding: 15px;
-    background-color: #e7eaf6;
+    background-color: var(--bg-dark);;
     color: var(--text);
     width: 40vw;
     /* border: 1px solid #38598b; */
 }
 
 #searchbar::placeholder{
-    /* color: #e7eaf6; */
+    color: var(--text-muted);
 }
 
 #searchbar:focus{
-    /* outline: none;
-    border: 1px solid #678fcb; */
+    /* outline: none; */
+    outline: 1px solid #678fcb;
 }
 
 #createButton{
     border: none;
-    border-radius: 80px;
-    color: var(--text);
+    border-radius: calc(infinity * 1px);
+    color: hsl(0, 0%, 20%);
     background-color: #e7eaf6;
-    padding: 6px 18px;
+    padding: 12px;
     font-size: 1em;
     cursor: pointer;
-    margin-right: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    gap: 4px;
 }
+
+#createButton svg{
+    width: 1.4em;
+    height: auto;
+}
+
 #createButton span{
-    margin-left: -6px;
-    margin-right: 6px;
-    font-size: 1.8em;
+    font-size: 1.3em;
 }
 
 #createButton:hover{
-    /* background-color: var(--bg-dark); */
+    background-color: #ddd;
 } 

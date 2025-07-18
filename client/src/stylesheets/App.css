@@ -7,9 +7,9 @@
     --highlight: hsl(300 50% 100%);
     --border: hsl(NaN 0% 50%);
     --border-muted: hsl(340 0% 62%);
-    --primary: hsl(200, 50%, 50%);
-    --secondary: hsl(22 50% 25%);
-    --danger: hsl(9 21% 41%);
+    --primary: cornflowerblue;
+    --secondary: orange;
+    --danger: crimson;
     --warning: hsl(52 23% 34%);
     --success: hsl(147 19% 36%);
     --info: hsl(217 22% 41%);
@@ -17,20 +17,20 @@
 
 @media (prefers-color-scheme: dark) {
     body{
-        /* --bg-dark: hsl(336 0% 1%);
+        --bg-dark: rgb(38, 41, 43);
         --bg: hsl(300 0% 4%);
-        --bg-light: hsl(0 0% 9%);
-        --text: hsl(300 0% 95%);
+        --bg-light: rgb(24, 26, 27);
+        --text: rgb(226, 223, 219);
         --text-muted: hsl(300 0% 69%);
         --highlight: hsl(330 0% 39%);
         --border: hsl(0 0% 28%);
         --border-muted: hsl(300 0% 18%);
-        --primary: hsl(197 69% 64%);
-        --secondary: hsl(20 68% 69%);
-        --danger: hsl(9 26% 64%);
+        --primary: rgb(16, 60, 139);
+        --secondary: rgb(204, 132, 0);
+        --danger: rgb(176, 16, 48);
         --warning: hsl(52 19% 57%);
         --success: hsl(146 17% 59%);
-        --info: hsl(217 28% 65%); */
+        --info: hsl(217 28% 65%);
     }
 }
 
@@ -41,6 +41,7 @@ body{
     color: var(--text);
     margin: 0;
     padding: 0;
+    height: 100vh;
 }
 
 svg{
@@ -50,4 +51,18 @@ svg{
 ul, ol{
     padding: 0;
     list-style-type: none;
+}
+
+.loading{
+    height: 100vh;
+}
+
+button:disabled{
+    cursor: not-allowed !important;
+}
+
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -30,7 +30,6 @@ export default function HomePage(){
                 allSets={allSets}
             />
         </div>
-        <Footer/>
         </>
     )
 }
