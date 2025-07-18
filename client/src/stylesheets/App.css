@@ -15,7 +15,7 @@
     --info: hsl(217 22% 41%);
 }
 
-@media (prefers-color-scheme: dark) {
+[data-theme="dark"] {
     body{
         --bg-dark: rgb(38, 41, 43);
         --bg: hsl(300 0% 4%);
@@ -41,7 +41,7 @@ body{
     color: var(--text);
     margin: 0;
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 svg{

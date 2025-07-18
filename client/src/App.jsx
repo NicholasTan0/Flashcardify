@@ -8,6 +8,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import Edit from "./pages/Edit";
 import Study from "./pages/Study";
 import Match from "./pages/Match";
+import { useEffect } from "react";
 
 export const backendURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -16,6 +17,18 @@ export default function App(){
     const { id } = useParams();
     return <Navigate to={`/${id}`}/>
   }
+
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+
+    if(saved)
+      document.documentElement.setAttribute("data-theme", saved);
+    else{
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
+    }
+  },[]);
+
 
   const router = createBrowserRouter([
     {

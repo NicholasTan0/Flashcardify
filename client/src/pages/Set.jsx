@@ -110,14 +110,14 @@ export default function Set(){
 
             <h2 style={{justifySelf: "center"}}>Terms in this set ({currentSet?.cards.length})</h2>
             <ol className="allCardsContainer">
-                    {currentSet?.cards.map(card => <li key={card._id}>
-                        <div className="allCardsTerm">
-                            <div className="listTerm">{card.term}</div>
-                        </div>
-                        <div className="allCardsDefinition">
-                            <div className="listDefinition">{card.definition}</div>
-                        </div>
-                    </li>)}
+                {currentSet?.cards.map(card => <li key={card._id}>
+                    <div className="allCardsTerm">
+                        <div className="listTerm">{card.term}</div>
+                    </div>
+                    <div className="allCardsDefinition">
+                        <div className="listDefinition">{card.definition}</div>
+                    </div>
+                </li>)}
             </ol>
         </div>
     )
