@@ -37,16 +37,24 @@ export default function Match(){
                 let myArr = []
                 let myMap = new Map();
                 for(const rand of random6){
-                    myArr.push(rand.term);
-                    myArr.push(rand.definition);
-                    
-                    if(!myMap.has(rand.term)){
-                        myMap.set(rand.term, []);
+                    const termObj = {
+                        term: rand.term,
+                        termImg: rand.termImg,
                     }
-                    myMap.get(rand.term).push(rand.definition);
+                    const definitionObj = {
+                        definition: rand.definition,
+                        definitionImg: rand.definitionImg,
+                    }
+                    myArr.push((termObj));
+                    myArr.push((definitionObj));
+                    if(!myMap.has(JSON.stringify(termObj))){
+                        myMap.set(JSON.stringify(termObj), []);
+                    }
+                    myMap.get(JSON.stringify(termObj)).push(definitionObj);
                 }
                 myMapRef.current = myMap;
-                setMatchArray(shuffle(myArr));
+                let shuffled = shuffle(myArr);
+                setMatchArray(shuffled);
             }
         } catch (error) {
             console.log(error);
@@ -61,7 +69,15 @@ export default function Match(){
 
     useEffect(()=>{
         if(pick2){
-            if(myMapRef.current.get(pick2.item)?.includes(pick1.item) || myMapRef.current.get(pick1.item)?.includes(pick2.item)){
+            // console.log(JSON.stringify(pick1.item))
+            // console.log(JSON.stringify(pick2.item))
+            // console.log(myMapRef.current.get(JSON.stringify(pick2.item)))
+            // console.log(myMapRef.current.get(JSON.stringify(pick1.item)))
+            if(myMapRef.current.get(JSON.stringify(pick2.item))?.some(obj => 
+                (obj.term === pick1.item.term && obj.termImg === pick1.item.termImg) && (obj.definition === pick1.item.definition && obj.definitionImg === pick1.item.definitionImg)
+            ) || myMapRef.current.get(JSON.stringify(pick1.item))?.some(obj => 
+                (obj.term === pick2.item.term && obj.termImg === pick2.item.termImg) && (obj.definition === pick2.item.definition && obj.definitionImg === pick2.item.definitionImg)
+            )){
                 setDoneArray(prev => [...prev, pick1.index, pick2.index]);
                 setTimeout(()=>{
                     setPick1(null);
@@ -103,17 +119,28 @@ export default function Match(){
             </div>
             {matchArray.length !== doneArray.length ? <div className="grid">
                 {matchArray.map((item, index) => 
-                    <div key={index} className={`item ${doneArray.includes(index) ? "hidden" : ""} ${(pick1?.index == index) || (pick2?.index == index) ? `selected ${wrong ? "wrong" : ""}` : ""}`} onClick={()=>{
-                        if(index == pick1?.index) setPick1(null);
-                        else if(index == pick2?.index) setPick2(null);
-                        else if(!pick1) setPick1({item, index});
-                        else if(!pick2) setPick2({item, index});
-                        else{
-                            setPick1(null);
-                            setPick2(null);
-                        }
-                    }}>
-                        {item}
+                    <div key={index} 
+                    className={`c1 ${doneArray.includes(index) ? "hidden" : ""} ${(pick1?.index == index) || (pick2?.index == index) ? `selected ${wrong ? "wrong" : ""}` : ""}`}
+                     onClick={()=>{
+                                if(index == pick1?.index) setPick1(null);
+                                else if(index == pick2?.index) setPick2(null);
+                                else if(!pick1) setPick1({item, index});
+                                else if(!pick2) setPick2({item, index});
+                                else{
+                                    setPick1(null);
+                                    setPick2(null);
+                                }
+                        }}>
+                        <div 
+                             
+                            style={item.termImg || item.definitionImg ? { backgroundImage: `url(${item.termImg || item.definitionImg})` } : {}}
+                            className="item"
+                        >
+                        </div>
+                        <div className="c2">
+                            {item.term}
+                            {item.definition}
+                        </div>
                     </div>
                 )}
             </div> : <div>

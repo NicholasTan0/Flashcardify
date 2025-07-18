@@ -3,15 +3,25 @@
     flex-wrap: wrap;
     width: 100%;
     gap: 10px;
-    /* grid-template-rows: repeat(3, 25vh);
-    grid-template-columns: repeat(4, 1fr); */
 }
 
 .item{
+    position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.5;
+    z-index: 0;
+    inset: 0;
+}
+
+.c1{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex: 0 0 calc((100% - 30px)/4);
+    width: calc((100% - 30px)/4);
     height: calc((100vh - 200px)/3);
     box-sizing: border-box;
     background-color: var(--bg-light);
@@ -23,6 +33,19 @@
     opacity: 1;
     transition: all 0.25s;
     outline: 2px solid transparent;
+}
+
+.c2{
+    display: block;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    overflow-y: auto;
+    max-height: 100%;
+    text-align: center;
+    padding: 0 20px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
 }
 
 .selected{
