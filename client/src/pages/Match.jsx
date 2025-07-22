@@ -10,6 +10,7 @@ export default function Match(){
     
     let navigate = useNavigate();
 
+    const [startGame, setStartGame] = useState(false);
     const [currentSet, setCurrentSet] = useState(null);
     const [loading, setLoading] = useState(true);
     const [pick1, setPick1] = useState(null);
@@ -17,8 +18,49 @@ export default function Match(){
     const [matchArray, setMatchArray] = useState([]);
     const [doneArray, setDoneArray] = useState([]);
     const [wrong, setWrong] = useState(false);
-
+    const [isRunning, setIsRunning] = useState(false);
+    const [elapsedTime, setElapsedTime] = useState(0);
+    const intervalIdRef = useRef(null);
+    const startTimeRef = useRef(null);
     const myMapRef = useRef(new Map());
+
+    useEffect(()=>{
+        startGame ? start() : stop();
+    }, [startGame])
+
+    useEffect(()=>{
+        if(isRunning === true){
+            intervalIdRef.current = setInterval(()=>{
+                setElapsedTime(Date.now() - startTimeRef.current);
+            },10);
+        }
+
+        return () => {
+            clearInterval(intervalIdRef.current);
+        }
+    }, [isRunning])
+
+    function start(){
+        if(isRunning) return;
+        setIsRunning(true);
+        startTimeRef.current = Date.now() - elapsedTime;
+    }
+
+    function stop(){
+        setIsRunning(false);
+    }
+
+    function reset(){
+        setElapsedTime(0);
+        setIsRunning(false);
+    }
+
+    function formatTime(){
+        let seconds = Math.floor(elapsedTime/(1000) % 60);
+        let milliseconds = Math.floor((elapsedTime % 1000) / 100);
+
+        return `${seconds}.${milliseconds}`;
+    }
 
     function shuffle(array) {
         for(let i = array.length - 1; i > 0; i--){
@@ -33,28 +75,7 @@ export default function Match(){
             const response = await axios.post(`${backendURL}/api/set/single`, { id });
             if(response.data.success){
                 setCurrentSet(response.data.set);
-                let random6 = shuffle(response.data.set.cards).splice(0,6);
-                let myArr = []
-                let myMap = new Map();
-                for(const rand of random6){
-                    const termObj = {
-                        term: rand.term,
-                        termImg: rand.termImg,
-                    }
-                    const definitionObj = {
-                        definition: rand.definition,
-                        definitionImg: rand.definitionImg,
-                    }
-                    myArr.push((termObj));
-                    myArr.push((definitionObj));
-                    if(!myMap.has(JSON.stringify(termObj))){
-                        myMap.set(JSON.stringify(termObj), []);
-                    }
-                    myMap.get(JSON.stringify(termObj)).push(definitionObj);
-                }
-                myMapRef.current = myMap;
-                let shuffled = shuffle(myArr);
-                setMatchArray(shuffled);
+                gameFun(response.data.set.cards);
             }
         } catch (error) {
             console.log(error);
@@ -63,16 +84,38 @@ export default function Match(){
         }
     }
 
+    const gameFun = (arr) => {
+        let random6 = shuffle(arr).slice(0,6);
+        let myArr = []
+        let myMap = new Map();
+        for(const rand of random6){
+            const termObj = {
+                term: rand.term,
+                termImg: rand.termImg,
+            }
+            const definitionObj = {
+                definition: rand.definition,
+                definitionImg: rand.definitionImg,
+            }
+            myArr.push((termObj));
+            myArr.push((definitionObj));
+            if(!myMap.has(JSON.stringify(termObj))){
+                myMap.set(JSON.stringify(termObj), []);
+            }
+            myMap.get(JSON.stringify(termObj)).push(definitionObj);
+        }
+        myMapRef.current = myMap;
+        let shuffled = shuffle(myArr);
+        setMatchArray(shuffled);
+    }
+
     useEffect(()=>{
         fetchSet();
+        reset();
     },[])
 
     useEffect(()=>{
         if(pick2){
-            // console.log(JSON.stringify(pick1.item))
-            // console.log(JSON.stringify(pick2.item))
-            // console.log(myMapRef.current.get(JSON.stringify(pick2.item)))
-            // console.log(myMapRef.current.get(JSON.stringify(pick1.item)))
             if(myMapRef.current.get(JSON.stringify(pick2.item))?.some(obj => 
                 (obj.term === pick1.item.term && obj.termImg === pick1.item.termImg) && (obj.definition === pick1.item.definition && obj.definitionImg === pick1.item.definitionImg)
             ) || myMapRef.current.get(JSON.stringify(pick1.item))?.some(obj => 
@@ -95,6 +138,13 @@ export default function Match(){
         }
     }, [pick2])
 
+    useEffect(()=>{
+        if(doneArray.length === matchArray.length){
+            setStartGame(false);
+        }
+    }, [doneArray])
+    
+
     if(loading) return (
         <div className="loading"></div>
     )
@@ -106,12 +156,39 @@ export default function Match(){
         </div>
     )
 
+    if(!startGame && !doneArray) return (
+        <div className="main">
+            <div className="closeButtonContainer">
+                <button className="closeButton" title="Close" onClick={()=>{
+                    navigate(`/${id}`);
+                }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                    </svg>
+                </button>
+            </div>
+            <div className="start-container">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zM1 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1z"/>
+                </svg>
+                <h1>Ready to play?</h1>
+                <p>Match all the terms with their definitions as fast as you can.</p>
+                <button onClick={()=>setStartGame(true)}>Start game</button>
+            </div>
+        </div>
+    )
+
     return (
         <div className="main">
             <div className="match-header">
                 <h2>{currentSet.title}</h2>
-                <span>0:00</span>
-                <button className="closeButton" title="Close" onClick={()=>navigate(`/${id}`)}>
+                <div className="stopwatch">
+                    <div className="display">{formatTime()}</div>
+                </div>
+                <button className="closeButton" title="Close" onClick={()=>{
+                    stop();
+                    navigate(`/${id}`);
+                }}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
                     </svg>
@@ -143,8 +220,17 @@ export default function Match(){
                         </div>
                     </div>
                 )}
-            </div> : <div>
-                All done!
+            </div> : <div className="end-container">
+                    <h2>Well done! Can you beat your score?</h2>
+                    <button onClick={()=>{
+                        reset();
+                        setPick1(null);
+                        setPick2(null);
+                        setStartGame(true);
+                        setDoneArray([]);
+                        setMatchArray([]);
+                        gameFun(currentSet.cards);
+                    }}>Play again</button>
             </div>}
         </div>
     )

@@ -13,7 +13,7 @@
     width: 40vw;
     min-width: 500px;
     height: 45vh;
-    min-height: 300px;
+    min-height: 350px;
     cursor: pointer;
     transform-style: preserve-3d;
     transition: transform 0.3s ease; 
@@ -79,7 +79,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
     font-size: larger;
 }
 
@@ -106,7 +106,7 @@
 }
 
 progress{
-    margin: 10px 0;
+    margin: 20px 0;
     width: 400px;
 }
 
@@ -225,6 +225,20 @@ progress{
     padding: 0 20px;
 }
 
+.study-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: -30px;
+    /* font-size: 1.5em;
+    font-weight: bold; */
+}
+
+.study-header h1{
+    margin: 4px 0;
+}
+
 .closeButton{
     border-radius: calc(infinity * 1px);
     aspect-ratio: 1/1;
@@ -250,4 +264,89 @@ progress{
     border: none;
     margin-top: 70px;
     margin-bottom: 70px;
+}
+
+#noButton, #yesButton{
+    aspect-ratio: 1/1;
+    /* width: 24px;
+    height: 24px; */
+    outline: 2px solid;
+    border-radius: calc(infinity * 1px);
+    padding: 8px;
+    cursor: pointer;
+    background-color: transparent;
+    position: relative;
+}
+
+#noButton{
+    color: red;
+}
+
+#noButton:hover{
+    color: var(--bg-dark);
+    background-color: red;
+}
+
+#noButton > div{
+    display: none;
+    position: absolute;
+}
+
+#noButton:hover > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    top: -110%;
+    color: var(--bg);
+    padding: 8px;
+    font-size: 1.2em;
+    background-color: var(--text);
+}
+
+#yesButton{
+    color: green;
+}
+
+#yesButton > div{
+    display: none;
+    position: absolute;
+}
+
+#yesButton:hover > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    top: -110%;
+    color: var(--bg);
+    padding: 8px;
+    font-size: 1.2em;
+    background-color: var(--text);
+}
+
+#yesButton:hover{
+    color: var(--bg-dark);
+    background-color: green;
+}
+
+.under-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+}
+
+#listen-button, #shuffle-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#listen-button svg, #shuffle-button svg{
+    width: 24px;
+    height: auto;
 }

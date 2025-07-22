@@ -88,12 +88,12 @@ export default function Set(){
             <div className="flashcard-container">
                 <div onClick={()=>{setIsFlipped(!isFlipped)}} className={`flashcard ${isFlipped ? 'flipped' : ''} `}>
                     <div className="card-front">
-                        <div id="termText">{currentSet?.cards[index].term}</div>
+                        {currentSet?.cards[index].term.length > 0 && <div id="termText">{currentSet?.cards[index].term}</div>}
                         {currentSet?.cards[index].termImg &&
                             <img src={currentSet?.cards[index].termImg}/>}
                     </div>
                     <div className={`card-back ${isFlipped}`}>
-                        <div id="definitionText">{currentSet?.cards[index].definition}</div>
+                        {currentSet?.cards[index].definition.length > 0 && <div id="definitionText">{currentSet?.cards[index].definition}</div>}
                         {currentSet?.cards[index].definitionImg &&
                             <img src={currentSet?.cards[index].definitionImg}/>}
                     </div>

@@ -56,8 +56,8 @@ const updateCard = async (req, res) => {
 
         const toUpdate = {};
 
-        if(term) toUpdate.term = term;
-        if(definition) toUpdate.definition = definition;
+        if(term !== null) toUpdate.term = term;
+        if(definition !== null) toUpdate.definition = definition;
 
         let termImgURL = null;
         if(termImg){
